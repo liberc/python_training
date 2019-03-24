@@ -3,8 +3,8 @@
 #from selenium.webdriver.common.by import By
 #from selenium.webdriver.common.keys import Keys
 #from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
+#from selenium.common.exceptions import NoSuchElementException
+#from selenium.common.exceptions import NoAlertPresentException
 #import unittest, time, re
 import pytest
 from application import Application
@@ -26,15 +26,15 @@ def test_add_empty_group(app):
     app.create_group(Group(name="", header="", footer=""))
     app.logout()
 
-def is_element_present(self, how, what):
-    try: self.wd.find_element(by=how, value=what)
-    except NoSuchElementException as e: return False
-    return True
-    
-def is_alert_present(self):
-    try: self.wd.switch_to_alert()
-    except NoAlertPresentException as e: return False
-    return True
-    
-if __name__ == "__main__":
-    unittest.main()
+# def is_element_present(self, how, what):
+#     try: self.wd.find_element(by=how, value=what)
+#     except NoSuchElementException as e: return False
+#     return True
+#
+# def is_alert_present(self):
+#     try: self.wd.switch_to_alert()
+#     except NoAlertPresentException as e: return False
+#     return True
+#
+# if __name__ == "__main__":
+#     unittest.main()
