@@ -36,6 +36,5 @@ def is_alert_present(self):
     except NoAlertPresentException as e: return False
     return True
     
-
 if __name__ == "__main__":
     unittest.main()
