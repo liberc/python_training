@@ -5,11 +5,14 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    #CONTACT METODS
-    def fill_main(self, contact):
+    def init_creation(self):
         wd = self.app.wd
         # init contact  creation
         wd.find_element_by_link_text("add new").click()
+
+    #CONTACT METODS
+    def fill_main(self, contact):
+        wd = self.app.wd
         # fill contact form
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -89,3 +92,26 @@ class ContactHelper:
         # submit contact creation
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
 
+    def delete_first(self):
+        wd = self.app.wd
+        self.open_contact_page()
+        #select first group
+        wd.find_element_by_name("selected[]").click()
+        #submit deletion
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
+        #self.open_contact_page()
+
+    def open_contact_page(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+
+    def edit_first(self, contact, contact_dates, contact_secondary):
+        wd = self.app.wd
+        self.open_contact_page()
+        wd.find_element_by_xpath("//img[@title='Edit']").click()
+        self.fill_main(contact)
+        self.fill_dates(contact_dates)
+        self.fill_secondary(contact_secondary)
+        # submit contact edition
+        wd.find_element_by_name("update").click()
