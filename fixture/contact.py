@@ -89,8 +89,11 @@ class ContactHelper:
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact_secondary.notes)
-        # submit contact creation
-        wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
+
+    def submit_contact_form(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//*[@id='content']/form/input[21]").click()
+
 
     def delete_first(self):
         wd = self.app.wd
@@ -114,4 +117,4 @@ class ContactHelper:
         self.fill_dates(contact_dates)
         self.fill_secondary(contact_secondary)
         # submit contact edition
-        wd.find_element_by_name("update").click()
+        wd.find_element_by_xpath('//*[@id="content"]/form[1]/input[1]').click()
