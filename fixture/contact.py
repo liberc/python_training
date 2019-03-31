@@ -54,41 +54,35 @@ class ContactHelper:
         wd.find_element_by_name("email3").send_keys(contact.email3)
         wd.find_element_by_name("homepage").clear()
         wd.find_element_by_name("homepage").send_keys(contact.homepage)
-
-    def fill_dates(self, contact_dates):
-        wd = self.app.wd
-        # fill dates form
+        #fill dates
         wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact_dates.bday)
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.dates_bday)
         wd.find_element_by_xpath("//option[3]").click()
         wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact_dates.bmonth)
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.dates_bmonth)
         wd.find_element_by_xpath("//select[2]/option[4]").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(contact_dates.byear)
+        wd.find_element_by_name("byear").send_keys(contact.dates_byear)
         wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact_dates.aday)
+        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.dates_aday)
         wd.find_element_by_xpath("//select[3]/option[10]").click()
         wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact_dates.amonth)
+        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.dates_amonth)
         wd.find_element_by_xpath("//select[4]/option[8]").click()
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys(contact_dates.ayear)
-
-    def fill_secondary(self, contact_secondary):
-        wd = self.app.wd
+        wd.find_element_by_name("ayear").send_keys(contact.dates_ayear)
         # fill secondary form
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
-        wd.find_element_by_name("address2").send_keys(contact_secondary.address)
+        wd.find_element_by_name("address2").send_keys(contact.secondary_address)
         wd.find_element_by_name("phone2").click()
         wd.find_element_by_name("phone2").clear()
-        wd.find_element_by_name("phone2").send_keys(contact_secondary.home)
+        wd.find_element_by_name("phone2").send_keys(contact.secondary_home)
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
-        wd.find_element_by_name("notes").send_keys(contact_secondary.notes)
+        wd.find_element_by_name("notes").send_keys(contact.secondary_notes)
 
     def submit_contact_form(self):
         wd = self.app.wd
@@ -109,12 +103,10 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("home").click()
 
-    def edit_first(self, contact, contact_dates, contact_secondary):
+    def edit_first(self, contact):
         wd = self.app.wd
         self.open_contact_page()
         wd.find_element_by_xpath("//img[@title='Edit']").click()
         self.fill_main(contact)
-        self.fill_dates(contact_dates)
-        self.fill_secondary(contact_secondary)
         # submit contact edition
         wd.find_element_by_xpath('//*[@id="content"]/form[1]/input[1]').click()
