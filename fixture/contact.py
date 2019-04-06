@@ -8,6 +8,8 @@ class ContactHelper:
     def init_creation(self):
         wd = self.app.wd
         # init contact  creation
+        if wd.current_url.endswith("/edit.php") and len(wd.find_element_by_xpath("//h1[contains(text(),'Edit / add address book entry')]")) > 0:
+            return
         wd.find_element_by_link_text("add new").click()
 
     #CONTACT METODS
