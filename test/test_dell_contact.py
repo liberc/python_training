@@ -1,6 +1,7 @@
 from model.contact import Contact
+from random import randrange
 
-def test_dell_contact(app):
+def test_dell_some_contact(app):
     if app.contact.count() == 0:
         app.contact.init_creation()
         app.contact.fill_main(Contact(firstname="Ivan", middlename="Ivanovich", lastname="Ivanov", nickname="Ivashka",
@@ -14,8 +15,9 @@ def test_dell_contact(app):
                                       secondary_notes="this is test notes"))
         app.contact.submit_contact_form()
     old_contacts = app.contact.get_contact_list()
-    app.contact.delete_first()
+    index = randrange(len(old_contacts))
+    app.contact.delete_contact_by_index(index)
     assert len(old_contacts) - 1 == app.contact.count()
     new_contacts = app.contact.get_contact_list()
-    old_contacts[0:1] = []
+    old_contacts[index:index+1] = []
     assert old_contacts == new_contacts
