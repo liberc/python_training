@@ -13,4 +13,9 @@ def test_dell_contact(app):
                                       dates_ayear="2005", secondary_address="Moscow, Street Test", secondary_home="21",
                                       secondary_notes="this is test notes"))
         app.contact.submit_contact_form()
+    old_contacts = app.contact.get_contact_list()
     app.contact.delete_first()
+    new_contacts = app.contact.get_contact_list()
+    assert len(old_contacts) - 1 == len(new_contacts)
+    old_contacts[0:1] = []
+    assert old_contacts == new_contacts
